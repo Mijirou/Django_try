@@ -1,0 +1,94 @@
+[1mdiff --git a/advertisments/advertisments/__pycache__/settings.cpython-311.pyc b/advertisments/advertisments/__pycache__/settings.cpython-311.pyc[m
+[1mindex 4609657..1ca0ff4 100644[m
+Binary files a/advertisments/advertisments/__pycache__/settings.cpython-311.pyc and b/advertisments/advertisments/__pycache__/settings.cpython-311.pyc differ
+[1mdiff --git a/advertisments/advertisments/__pycache__/urls.cpython-311.pyc b/advertisments/advertisments/__pycache__/urls.cpython-311.pyc[m
+[1mindex fbd4579..40f33a2 100644[m
+Binary files a/advertisments/advertisments/__pycache__/urls.cpython-311.pyc and b/advertisments/advertisments/__pycache__/urls.cpython-311.pyc differ
+[1mdiff --git a/advertisments/advertisments/settings.py b/advertisments/advertisments/settings.py[m
+[1mindex e253903..e3700a6 100644[m
+[1m--- a/advertisments/advertisments/settings.py[m
+[1m+++ b/advertisments/advertisments/settings.py[m
+[36m@@ -56,7 +56,7 @@[m [mROOT_URLCONF = 'advertisments.urls'[m
+ TEMPLATES = [[m
+     {[m
+         'BACKEND': 'django.template.backends.django.DjangoTemplates',[m
+[31m-        'DIRS': [],[m
+[32m+[m[32m        'DIRS': [Path.joinpath(BASE_DIR, 'templates')],[m
+         'APP_DIRS': True,[m
+         'OPTIONS': {[m
+             'context_processors': [[m
+[36m@@ -119,6 +119,10 @@[m [mUSE_TZ = True[m
+ [m
+ STATIC_URL = 'static/'[m
+ [m
+[32m+[m[32mSTATICFILES_DIRS = [[m
+[32m+[m[32m    Path.joinpath(BASE_DIR, 'static')[m
+[32m+[m[32m][m
+[32m+[m
+ # Default primary key field type[m
+ # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field[m
+ [m
+[1mdiff --git a/advertisments/app_lesson_4/__pycache__/urls.cpython-311.pyc b/advertisments/app_lesson_4/__pycache__/urls.cpython-311.pyc[m
+[1mindex accad00..14a6f33 100644[m
+Binary files a/advertisments/app_lesson_4/__pycache__/urls.cpython-311.pyc and b/advertisments/app_lesson_4/__pycache__/urls.cpython-311.pyc differ
+[1mdiff --git a/advertisments/app_lesson_4/__pycache__/views.cpython-311.pyc b/advertisments/app_lesson_4/__pycache__/views.cpython-311.pyc[m
+[1mindex 1f0aa41..e0e452f 100644[m
+Binary files a/advertisments/app_lesson_4/__pycache__/views.cpython-311.pyc and b/advertisments/app_lesson_4/__pycache__/views.cpython-311.pyc differ
+[1mdiff --git a/advertisments/app_lesson_4/urls.py b/advertisments/app_lesson_4/urls.py[m
+[1mindex dffc367..063bc95 100644[m
+[1m--- a/advertisments/app_lesson_4/urls.py[m
+[1m+++ b/advertisments/app_lesson_4/urls.py[m
+[36m@@ -1,9 +1,14 @@[m
+ from django.urls import path[m
+[31m-from .views import answer[m
+[32m+[m[32mfrom .views import answer, top_sellers, advertisement_post, register, login, profile[m
+ [m
+ [m
+ urlpatterns = [[m
+[31m-    path('',answer), [m
+[32m+[m[32m    path('',answer, name='main-page'),[m[41m [m
+[32m+[m[32m    path('top-sellers/', top_sellers, name='top-sellers'),[m
+[32m+[m[32m    path('advertisement-post/', advertisement_post, name='advertisement-post'),[m[41m [m
+[32m+[m[32m    path('register/', register, name='register'),[m
+[32m+[m[32m    path('login/', login, name='login'),[m
+[32m+[m[32m    path('profile/', profile, name='profile')[m
+ ][m
+ [m
+ [m
+[1mdiff --git a/advertisments/app_lesson_4/views.py b/advertisments/app_lesson_4/views.py[m
+[1mindex bba2f84..bae7369 100644[m
+[1m--- a/advertisments/app_lesson_4/views.py[m
+[1m+++ b/advertisments/app_lesson_4/views.py[m
+[36m@@ -1,7 +1,30 @@[m
+ from django.shortcuts import render[m
+[31m-from django.http import HttpResponse[m
+ [m
+ # Create your views here.[m
+ def answer(request):[m
+[31m-    return HttpResponse('Домашка по 4 занятию')[m
+[32m+[m[32m    return render(request, 'Index.html')[m
+[32m+[m
+[32m+[m[32mdef top_sellers(request):[m
+[32m+[m[32m    return render(request, 'top-sellers.html')[m
+[32m+[m
+[32m+[m[32mdef advertisement_post(request):[m
+[32m+[m[32m    return render(request, 'advertisement-post.html')[m
+[32m+[m
+[32m+[m[32mdef register(request):[m
+[32m+[m[32m    return render(request, 'register.html')[m
+[32m+[m
+[32m+[m[32mdef login(request):[m
+[32m+[m[32m    return render(request, 'login.html')[m
+[32m+[m
+[32m+[m[32mdef profile(request):[m
+[32m+[m[32m    return render(request, 'profile.html')[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+ [m
